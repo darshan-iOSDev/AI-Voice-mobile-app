@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio_wave" translatesAutoresizingMaskIntoConstraints="NO" id="3Jm-c1-2UX">
+                                <rect key="frame" x="76.666666666666686" y="363.66666666666669" width="240" height="150.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="XV0-Yq-GyC"/>
+                                    <constraint firstAttribute="height" constant="150" id="nSm-RX-9yC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="app_main_color"/>
+                        <constraints>
+                            <constraint firstItem="3Jm-c1-2UX" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="0Pw-mf-Xdd"/>
+                            <constraint firstItem="3Jm-c1-2UX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="y0t-e7-IvG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-33" y="213"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Audio_wave" width="2175" height="2175"/>
+        <namedColor name="app_main_color">
+            <color red="0.33333333333333331" green="0.27450980392156865" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
