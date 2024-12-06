@@ -1,10 +1,3 @@
-//
-//  TabVC.swift
-//  AI Voice
-//
-//  Created by Chiku on 06/12/24.
-//
-
 import UIKit
 
 class TabVC: UITabBarController {
@@ -15,8 +8,25 @@ class TabVC: UITabBarController {
         // Customize the appearance of the tab bar item title
         let selectedColor = UIColor.white  // Set your desired color
         let unselectedColor = UIColor.darkGray  // Set your desired color
-        
-        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: unselectedColor], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: selectedColor], for: .selected)
+
+        // Ensure the font is loaded
+        guard let customFont = UIFont(name: "AvenirNext-Medium", size: 12) else {
+            print("Failed to load Avenir Next font.")
+            return
+        }
+
+        // Set custom font attributes
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: unselectedColor,
+            .font: customFont
+        ]
+
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: selectedColor,
+            .font: customFont
+        ]
+
+        UITabBarItem.appearance().setTitleTextAttributes(normalAttributes, for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes(selectedAttributes, for: .selected)
     }
 }

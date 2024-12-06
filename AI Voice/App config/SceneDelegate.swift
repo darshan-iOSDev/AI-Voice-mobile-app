@@ -13,11 +13,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        // Ensure the scene is a UIWindowScene
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        // Create a new UIWindow
+        let window = UIWindow(windowScene: windowScene)
+
+        // Create a UINavigationController for managing navigation
+        let navigationController = UINavigationController()
+
+        // Determine the initial view controller
+        let isLoggedIn = UserDefaultManager.getBooleanFromUserDefaults(key: Constant.UD.USER_LOGED_IN)
+
+        if isLoggedIn {
+            print("User is already logged in. Navigating to TabVC.")
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tabVC = storyBoard.instantiateViewController(withIdentifier: "TabVC") as! TabVC
+            navigationController.pushViewController(tabVC, animated: true)
+        } else {
+            print("User is not logged in. Navigating to AppleLoginVC.")
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let appleLoginVC = storyBoard.instantiateViewController(withIdentifier: "TabVC") as! TabVC
+            navigationController.pushViewController(appleLoginVC, animated: true)
+        }
+
+        // Set the navigation controller as the root view controller
+        window.rootViewController = navigationController
+
+        // Make the window visible
+        self.window = window
+        window.makeKeyAndVisible()
     }
+
+
+
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

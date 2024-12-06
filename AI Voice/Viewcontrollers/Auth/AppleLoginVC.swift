@@ -19,22 +19,22 @@ class AppleLoginVC: UIViewController {
     }
 }
 
-// MARK: - ASAuthorizationControllerDelegate
 extension AppleLoginVC: ASAuthorizationControllerDelegate {
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             // Extract user information
             let userIdentifier = appleIDCredential.user
             let fullName = appleIDCredential.fullName
             let email = appleIDCredential.email
-            
+
             // Print out user data
-            print("Apple User Login Successful")
-            print("User Identifier: \(userIdentifier)")
-            print("Full Name: \(fullName?.givenName ?? "N/A") \(fullName?.familyName ?? "N/A")")
-            print("Email: \(email ?? "N/A")")
+            print(">>>>>>>>>> Apple User Login Successful")
+            print(">>>>>>>>>> User Identifier: \(userIdentifier)")
+            print(">>>>>>>>>> Full Name: \(fullName?.givenName ?? "N/A") \(fullName?.familyName ?? "N/A")")
+            print(">>>>>>>>>> Email: \(email ?? "N/A")")
             
-            // Optional: Create a user object or send to your backend
+            // Handle successful login (e.g., save to keychain, send to backend)
             let userInfo = [
                 "userIdentifier": userIdentifier,
                 "firstName": fullName?.givenName ?? "",
@@ -42,18 +42,45 @@ extension AppleLoginVC: ASAuthorizationControllerDelegate {
                 "email": email ?? ""
             ]
             
-            // Handle successful login (e.g., save to keychain, send to backend)
             saveUserCredentials(userInfo: userInfo)
+            UserDefaultManager.setStringToUserDefaults(value: userIdentifier, key: Constant.UD.USER_ID)
+            
+            // Safely unwrap fullName and email before saving them
+            if let givenName = fullName?.givenName {
+                UserDefaultManager.setStringToUserDefaults(value: givenName, key: Constant.UD.USER_FULLNAME)
+            } else {
+                // Handle missing full name if necessary
+                UserDefaultManager.setStringToUserDefaults(value: "", key: Constant.UD.USER_FULLNAME)
+            }
+            
+            if let familyName = fullName?.familyName {
+                UserDefaultManager.setStringToUserDefaults(value: familyName, key: Constant.UD.USER_LASTNAME)
+            } else {
+                // Handle missing family name if necessary
+                UserDefaultManager.setStringToUserDefaults(value: "", key: Constant.UD.USER_LASTNAME)
+            }
+            
+            if let email = email {
+                UserDefaultManager.setStringToUserDefaults(value: email, key: Constant.UD.USER_EMAIL)
+            } else {
+                // Handle missing email if necessary
+                UserDefaultManager.setStringToUserDefaults(value: "", key: Constant.UD.USER_EMAIL)
+            }
+            
+            UserDefaultManager.setBooleanToUserDefaults(value: true, key: Constant.UD.USER_LOGED_IN)
             navigateToMainApp()
         }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error
-        print("Apple Sign In Failed: \(error.localizedDescription)")
+        print(">>>>>>>>> Apple Sign In Failed: \(error.localizedDescription)")
         showLoginErrorAlert()
     }
 }
+
+
+
 
 // MARK: - ASAuthorizationControllerPresentationContextProviding
 extension AppleLoginVC: ASAuthorizationControllerPresentationContextProviding {
@@ -76,6 +103,7 @@ extension AppleLoginVC {
         // Example:
         // let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         // navigationController?.pushViewController(mainVC, animated: true)
+        Navigation.shared.gotoTabVC(vc: self)
     }
     
     private func showLoginErrorAlert() {

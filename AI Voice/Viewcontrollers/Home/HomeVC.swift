@@ -1,29 +1,30 @@
-//
-//  HomeVC.swift
-//  AI Voice
-//
-//  Created by Chiku on 06/12/24.
-//
-
 import UIKit
 
 class HomeVC: UIViewController {
 
+    @IBOutlet weak var viewChatIcon: UIView!
+    @IBOutlet weak var viewMicIcon: UIView!
+    @IBOutlet weak var viewTransletIcon: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.viewChatIcon.clipsToBounds = true
+        self.viewChatIcon.cornerRadius = 22
+        self.viewChatIcon.borderColor = .gray
+        self.viewChatIcon.borderWidth = 1
+        self.viewChatIcon.layer.masksToBounds = true
+        
+        self.viewMicIcon.clipsToBounds = true
+        self.viewMicIcon.cornerRadius = 22
+        self.viewMicIcon.borderColor = .gray
+        self.viewMicIcon.borderWidth = 1
+        self.viewMicIcon.layer.masksToBounds = true
+        
+        self.viewTransletIcon.clipsToBounds = true
+        self.viewTransletIcon.cornerRadius = 22
+        self.viewTransletIcon.borderColor = .gray
+        self.viewTransletIcon.borderWidth = 1
+        self.viewTransletIcon.layer.masksToBounds = true
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
