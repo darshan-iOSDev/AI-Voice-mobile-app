@@ -23,4 +23,16 @@ struct Navigation {
         let VC = storyBoard.instantiateViewController(withIdentifier: "TabVC") as! TabVC
         vc.navigationController?.pushViewController(VC, animated: true)
     }
+    
+    func gotoSelectVoiceChangerVC(vc: UIViewController) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "SelectVoiceChangerVC") as! SelectVoiceChangerVC
+        vc.navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    func gotoAiVoiceChangerVC(vc: UIViewController) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "AiVoiceChanger") as! AiVoiceChanger
+        vc.navigationController?.pushViewController(VC, animated: true)
+    }
 }

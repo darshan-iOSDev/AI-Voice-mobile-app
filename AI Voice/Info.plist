@@ -21,5 +21,7 @@
 			</array>
 		</dict>
 	</dict>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>We need speech recognition to convert audio to text.</string>
 </dict>
 </plist>

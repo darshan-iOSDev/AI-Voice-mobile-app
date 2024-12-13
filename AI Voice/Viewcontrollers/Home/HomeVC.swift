@@ -27,4 +27,7 @@ class HomeVC: UIViewController {
         self.viewTransletIcon.layer.masksToBounds = true
     }
 
+    @IBAction func onTappedAiVoiceChanger(_ sender: UIButton) {
+        Navigation.shared.gotoSelectVoiceChangerVC(vc: self)
+    }
 }
